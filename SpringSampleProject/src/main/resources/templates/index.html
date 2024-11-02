@@ -8,12 +8,30 @@
 
 <form action="#" th:action="@{/addTask}" method="post">
     <input type="text" name="task" placeholder="Enter task" required>
+
+    <select name="person">
+        <option value="p1">P1</option>
+        <option value="p2">P2</option>
+    </select>
     <button type="submit">Add Task</button>
 </form>
 
-<form action="#" th:action="@{/printTask}" method="post">
-    <button type="submit">Print Task</button>
-</form>
+<!--<form action="#" th:action="@{/printTask}" method="post">-->
+<!--    <button type="submit">Print Task</button>-->
+<!--</form>-->
+
+<ul>
+    <li th:each="task : ${taskList}">
+        <span th:text="${task.name}"></span>
+        <br>
+        <span th:text="${task.date}"></span>
+        <br>
+        <span th:text="${task.owner.name}"></span>
+        <br>
+        <span th:text="${task.owner.role}"></span>
+        <hr>
+    </li>
+</ul>
 
 </body>
 </html>
