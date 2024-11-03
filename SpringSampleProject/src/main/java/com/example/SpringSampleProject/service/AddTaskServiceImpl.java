@@ -17,7 +17,10 @@ public class AddTaskServiceImpl implements AddTaskService {
 
     List<Task> taskList = new ArrayList<>();
 
-    List<Person> personList = List.of(new Person("P1", "R1"), new Person("P2", "R2"));
+    List<Person> personList = List.of(
+            new Person("P1", "R1"),
+            new Person("P2", "R2"),
+            new Person("P3", "R3"));
 
 //    @Override
 //    public List<String> getList() {
@@ -30,10 +33,14 @@ public class AddTaskServiceImpl implements AddTaskService {
 //    }
 
     @Override
-    public String addTask(String task) {
+    public String addTask(String task, String person) {
         list.add(task);
 
-        taskList.add(new Task(task, new Date(), new Person("PA", "Role1")));
+        Person owner = personList.stream().filter(val -> val.getName().equals(person)).findAny().orElse(
+                new Person("default", "default")
+        );
+
+        taskList.add(new Task(task, new Date(), owner));
         System.out.println("add new task : " + task);
         return task;
     }

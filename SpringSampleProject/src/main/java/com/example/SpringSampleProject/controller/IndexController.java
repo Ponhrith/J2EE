@@ -25,17 +25,18 @@ public class IndexController {
     @GetMapping("/index")
     public String getIndex(Model model) {
         model.addAttribute("taskList", addTaskService.getTaskList());
+        model.addAttribute("personList", addTaskService.getPersonList());
 
-        for (Task task : addTaskService.getTaskList()) {
-            task.getName();
-        }
+//        for (Task task : addTaskService.getTaskList()) {
+//            task.getName();
+//        }
         return "index";
     }
 
     @PostMapping("/addTask")
     public String addTask(@RequestParam("task") String task, String person) {
         System.out.println(person);
-        addTaskService.addTask(task);
+        addTaskService.addTask(task, person);
         return "redirect:/index";
     }
 
