@@ -28,18 +28,18 @@ public class LogAspect {
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable{
         Object[] args = joinPoint.getArgs();
 
-        if (args != null && args.length > 0) {
-            List<Object> list = new ArrayList<>();
-            for (var a : args){
-                System.out.println("around : before execution : args = " + a);
-                if (a instanceof String val){
-                    list.add("Task name(%s - %s)".formatted(val, Instant.now().toEpochMilli()));
-                } else {
-                    list.add(a);
-                }
-            }
-            args = list.toArray();
-        }
+//        if (args != null && args.length > 0) {
+//            List<Object> list = new ArrayList<>();
+//            for (var a : args){
+//                System.out.println("around : before execution : args = " + a);
+//                if (a instanceof String val){
+//                    list.add("Task name(%s - %s)".formatted(val, Instant.now().toEpochMilli()));
+//                } else {
+//                    list.add(a);
+//                }
+//            }
+//            args = list.toArray();
+//        }
 
         Object result = joinPoint.proceed(args);
         System.out.println("around : after execution : result = " + result);
